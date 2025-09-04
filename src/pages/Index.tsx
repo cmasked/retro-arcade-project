@@ -3,7 +3,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ProfileUpdate } from '@/components/profile/ProfileUpdate';
-import { Gamepad2, LogOut, Settings } from 'lucide-react';
+import { Gamepad2, LogOut, Settings, Trophy } from 'lucide-react';
 
 const Index = () => {
   const { user, loading, signOut } = useAuth();
@@ -75,25 +75,34 @@ const Index = () => {
             <ProfileUpdate />
           </div>
 
-          {/* Game features placeholder */}
+          {/* Game features */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
-            <div className="bg-card/50 backdrop-blur-sm border-2 border-primary/20 rounded-lg p-6 text-center hover:shadow-neon-pink transition-all duration-300">
+            <button 
+              onClick={() => navigate('/achievements')}
+              className="bg-card/50 backdrop-blur-sm border-2 border-primary/20 rounded-lg p-6 text-center hover:shadow-neon-pink transition-all duration-300 hover:scale-105 cursor-pointer"
+            >
               <Gamepad2 className="h-12 w-12 text-primary mx-auto mb-4 animate-pixel-float" />
               <h3 className="font-8bit text-sm neon-pink mb-2">HIGH SCORES</h3>
               <p className="font-retro text-xs text-muted-foreground">Track your best games</p>
-            </div>
+            </button>
             
-            <div className="bg-card/50 backdrop-blur-sm border-2 border-secondary/20 rounded-lg p-6 text-center hover:shadow-neon-cyan transition-all duration-300">
+            <button 
+              onClick={() => navigate('/settings')}
+              className="bg-card/50 backdrop-blur-sm border-2 border-secondary/20 rounded-lg p-6 text-center hover:shadow-neon-cyan transition-all duration-300 hover:scale-105 cursor-pointer"
+            >
               <Settings className="h-12 w-12 text-secondary mx-auto mb-4 animate-pixel-float" style={{ animationDelay: '1s' }} />
               <h3 className="font-8bit text-sm neon-cyan mb-2">SETTINGS</h3>
               <p className="font-retro text-xs text-muted-foreground">Customize your experience</p>
-            </div>
+            </button>
             
-            <div className="bg-card/50 backdrop-blur-sm border-2 border-accent/20 rounded-lg p-6 text-center hover:shadow-neon-green transition-all duration-300">
-              <LogOut className="h-12 w-12 text-accent mx-auto mb-4 animate-pixel-float" style={{ animationDelay: '2s' }} />
+            <button 
+              onClick={() => navigate('/achievements')}
+              className="bg-card/50 backdrop-blur-sm border-2 border-accent/20 rounded-lg p-6 text-center hover:shadow-neon-green transition-all duration-300 hover:scale-105 cursor-pointer"
+            >
+              <Trophy className="h-12 w-12 text-accent mx-auto mb-4 animate-pixel-float" style={{ animationDelay: '2s' }} />
               <h3 className="font-8bit text-sm neon-green mb-2">ACHIEVEMENTS</h3>
               <p className="font-retro text-xs text-muted-foreground">Unlock rewards</p>
-            </div>
+            </button>
           </div>
         </div>
       </div>
