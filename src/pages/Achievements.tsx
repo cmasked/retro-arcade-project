@@ -227,10 +227,10 @@ const Achievements = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-neon scanlines">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-galaxy nebula-bg">
         <div className="text-center space-y-4">
-          <Trophy className="h-16 w-16 text-primary animate-retro-spin mx-auto" />
-          <p className="font-8bit text-lg neon-pink">LOADING ACHIEVEMENTS...</p>
+          <Trophy className="h-16 w-16 text-primary animate-stellar-pulse mx-auto" />
+          <p className="font-space text-lg glow-blue">SCANNING ACHIEVEMENTS...</p>
         </div>
       </div>
     );
@@ -244,8 +244,10 @@ const Achievements = () => {
   const totalAchievements = ACHIEVEMENTS.length;
 
   return (
-    <div className="min-h-screen bg-gradient-neon relative overflow-hidden scanlines">
-      <div className="absolute inset-0 bg-background/95"></div>
+    <div className="min-h-screen bg-gradient-galaxy relative overflow-hidden nebula-bg">
+      <div className="absolute inset-0 bg-background/90"></div>
+      <div className="absolute top-16 right-16 w-2 h-2 bg-primary rounded-full animate-cosmic-drift shadow-stellar-blue"></div>
+      <div className="absolute bottom-20 left-20 w-1 h-1 bg-secondary rounded-full animate-cosmic-drift shadow-cosmic-cyan" style={{ animationDelay: '2s' }}></div>
       
       {/* Header */}
       <div className="relative z-10 p-6">
@@ -254,14 +256,14 @@ const Achievements = () => {
             onClick={() => navigate('/')}
             variant="outline"
             size="sm"
-            className="bg-secondary/10 border-secondary hover:bg-secondary hover:text-secondary-foreground font-8bit text-xs"
+            className="holo-border bg-card/40 font-cosmic text-xs"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             BACK
           </Button>
           <div className="flex items-center gap-4">
-            <Trophy className="h-8 w-8 text-primary animate-neon-pulse" />
-            <h1 className="text-xl font-8bit neon-pink">ACHIEVEMENTS</h1>
+            <Trophy className="h-8 w-8 text-accent animate-stellar-pulse" />
+            <h1 className="text-xl font-space glow-pink">GALACTIC HONORS</h1>
           </div>
         </div>
       </div>

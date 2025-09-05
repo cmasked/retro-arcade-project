@@ -65,20 +65,21 @@ export default {
 				}
 			},
 			backgroundImage: {
-				'gradient-primary': 'var(--gradient-primary)',
-				'gradient-secondary': 'var(--gradient-secondary)',
-				'gradient-accent': 'var(--gradient-accent)',
-				'gradient-neon': 'var(--gradient-neon)'
+				'gradient-nebula': 'var(--gradient-nebula)',
+				'gradient-galaxy': 'var(--gradient-galaxy)',
+				'gradient-stellar': 'var(--gradient-stellar)',
+				'gradient-void': 'var(--gradient-void)'
 			},
 			boxShadow: {
-				'neon-pink': 'var(--shadow-neon-pink)',
-				'neon-cyan': 'var(--shadow-neon-cyan)',
-				'neon-green': 'var(--shadow-neon-green)',
-				'pixel': 'var(--shadow-pixel)'
+				'stellar-blue': 'var(--shadow-stellar-blue)',
+				'cosmic-cyan': 'var(--shadow-cosmic-cyan)',
+				'nebula-pink': 'var(--shadow-nebula-pink)',
+				'void': 'var(--shadow-void)'
 			},
 			fontFamily: {
-				'8bit': ['Press Start 2P', 'monospace'],
-				'retro': ['Orbitron', 'monospace']
+				'space': ['Audiowide', 'cursive'],
+				'futuristic': ['Michroma', 'monospace'],
+				'cosmic': ['Exo 2', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -94,43 +95,38 @@ export default {
 					from: { height: 'var(--radix-accordion-content-height)' },
 					to: { height: '0' }
 				},
-				'neon-pulse': {
+				'stellar-pulse': {
 					'0%, 100%': { 
-						textShadow: '0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor',
+						boxShadow: 'var(--shadow-stellar-blue)',
 						transform: 'scale(1)'
 					},
 					'50%': { 
-						textShadow: '0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor',
-						transform: 'scale(1.05)'
+						boxShadow: 'var(--shadow-stellar-blue), var(--shadow-cosmic-cyan)',
+						transform: 'scale(1.02)'
 					}
 				},
-				'pixel-float': {
-					'0%, 100%': { transform: 'translateY(0px)' },
-					'50%': { transform: 'translateY(-8px)' }
+				'cosmic-drift': {
+					'0%': { transform: 'translateY(0px) rotate(0deg)' },
+					'33%': { transform: 'translateY(-10px) rotate(120deg)' },
+					'66%': { transform: 'translateY(5px) rotate(240deg)' },
+					'100%': { transform: 'translateY(0px) rotate(360deg)' }
 				},
-				'retro-spin': {
-					'0%': { transform: 'rotate(0deg)' },
-					'100%': { transform: 'rotate(360deg)' }
+				'orbit': {
+					'0%': { transform: 'rotate(0deg) translateX(50px) rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg) translateX(50px) rotate(-360deg)' }
 				},
-				'glitch': {
-					'0%, 90%, 100%': { transform: 'translate(0)' },
-					'10%': { transform: 'translate(-2px, 2px)' },
-					'20%': { transform: 'translate(2px, -2px)' },
-					'30%': { transform: 'translate(-2px, -2px)' },
-					'40%': { transform: 'translate(2px, 2px)' },
-					'50%': { transform: 'translate(-2px, 2px)' },
-					'60%': { transform: 'translate(2px, -2px)' },
-					'70%': { transform: 'translate(-2px, -2px)' },
-					'80%': { transform: 'translate(2px, 2px)' }
+				'shimmer': {
+					'0%': { backgroundPosition: '-200% 0' },
+					'100%': { backgroundPosition: '200% 0' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'neon-pulse': 'neon-pulse 2s ease-in-out infinite',
-				'pixel-float': 'pixel-float 3s ease-in-out infinite',
-				'retro-spin': 'retro-spin 4s linear infinite',
-				'glitch': 'glitch 2s infinite'
+				'stellar-pulse': 'stellar-pulse 3s ease-in-out infinite',
+				'cosmic-drift': 'cosmic-drift 8s ease-in-out infinite',
+				'orbit': 'orbit 15s linear infinite',
+				'shimmer': 'shimmer 2s ease-in-out infinite'
 			}
 		}
 	},

@@ -44,6 +44,81 @@ export type Database = {
         }
         Relationships: []
       }
+      user_achievements: {
+        Row: {
+          achievement_id: string
+          completed: boolean | null
+          created_at: string
+          id: string
+          progress: number | null
+          unlocked_at: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          achievement_id: string
+          completed?: boolean | null
+          created_at?: string
+          id?: string
+          progress?: number | null
+          unlocked_at?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          achievement_id?: string
+          completed?: boolean | null
+          created_at?: string
+          id?: string
+          progress?: number | null
+          unlocked_at?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_settings: {
+        Row: {
+          created_at: string
+          difficulty: string | null
+          id: string
+          language: string | null
+          music_enabled: boolean | null
+          notifications_enabled: boolean | null
+          sound_enabled: boolean | null
+          theme: string | null
+          updated_at: string
+          user_id: string
+          volume: number | null
+        }
+        Insert: {
+          created_at?: string
+          difficulty?: string | null
+          id?: string
+          language?: string | null
+          music_enabled?: boolean | null
+          notifications_enabled?: boolean | null
+          sound_enabled?: boolean | null
+          theme?: string | null
+          updated_at?: string
+          user_id: string
+          volume?: number | null
+        }
+        Update: {
+          created_at?: string
+          difficulty?: string | null
+          id?: string
+          language?: string | null
+          music_enabled?: boolean | null
+          notifications_enabled?: boolean | null
+          sound_enabled?: boolean | null
+          theme?: string | null
+          updated_at?: string
+          user_id?: string
+          volume?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

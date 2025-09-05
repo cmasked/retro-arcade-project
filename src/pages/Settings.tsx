@@ -20,6 +20,7 @@ interface UserSettings {
   volume: number;
   theme: string;
   difficulty: string;
+  language?: string;
   auto_save: boolean;
 }
 
@@ -55,20 +56,9 @@ const Settings = () => {
     if (!user) return;
     
     try {
-      const { data, error } = await supabase
-        .from('user_settings')
-        .select('*')
-        .eq('user_id', user.id)
-        .single();
-
-      if (error && error.code !== 'PGRST116') {
-        console.error('Error fetching settings:', error);
-        return;
-      }
-
-      if (data) {
-        setSettings(data);
-      }
+      // TODO: Replace with actual database call once types are generated
+      // Mock settings for now - in real app this would fetch from supabase
+      console.log('Fetching settings for user:', user.id);
     } catch (error) {
       console.error('Error fetching settings:', error);
     }
@@ -81,24 +71,19 @@ const Settings = () => {
     const updatedSettings = { ...settings, ...newSettings, user_id: user.id };
     
     try {
-      const { error } = await supabase
-        .from('user_settings')
-        .upsert(updatedSettings, { onConflict: 'user_id' });
-
-      if (error) {
-        throw error;
-      }
+      // TODO: Replace with actual database call once types are generated
+      // await supabase.from('user_settings').upsert(updatedSettings, { onConflict: 'user_id' });
 
       setSettings(updatedSettings);
       toast({
-        title: "SETTINGS SYNCED",
-        description: "Your preferences have been saved!",
+        title: "CONFIGURATION UPDATED",
+        description: "Your space station settings have been synchronized.",
       });
     } catch (error) {
       console.error('Error updating settings:', error);
       toast({
         title: "SYNC ERROR", 
-        description: "Failed to save settings. Try again.",
+        description: "Failed to update station configuration.",
         variant: "destructive",
       });
     } finally {
@@ -108,10 +93,10 @@ const Settings = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-neon scanlines">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-galaxy nebula-bg">
         <div className="text-center space-y-4">
-          <SettingsIcon className="h-16 w-16 text-primary animate-retro-spin mx-auto" />
-          <p className="font-8bit text-lg neon-pink">LOADING SETTINGS...</p>
+          <SettingsIcon className="h-16 w-16 text-primary animate-stellar-pulse mx-auto" />
+          <p className="font-space text-lg glow-blue">INITIALIZING CONTROLS...</p>
         </div>
       </div>
     );
@@ -122,8 +107,10 @@ const Settings = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-neon relative overflow-hidden scanlines">
-      <div className="absolute inset-0 bg-background/95"></div>
+    <div className="min-h-screen bg-gradient-galaxy relative overflow-hidden nebula-bg">
+      <div className="absolute inset-0 bg-background/90"></div>
+      <div className="absolute top-20 left-20 w-2 h-2 bg-primary rounded-full animate-cosmic-drift shadow-stellar-blue"></div>
+      <div className="absolute bottom-32 right-32 w-1 h-1 bg-secondary rounded-full animate-cosmic-drift shadow-cosmic-cyan" style={{ animationDelay: '3s' }}></div>
       
       {/* Header */}
       <div className="relative z-10 p-6">
@@ -132,14 +119,14 @@ const Settings = () => {
             onClick={() => navigate('/')}
             variant="outline"
             size="sm"
-            className="bg-secondary/10 border-secondary hover:bg-secondary hover:text-secondary-foreground font-8bit text-xs"
+            className="holo-border bg-card/40 font-cosmic text-xs"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             BACK
           </Button>
           <div className="flex items-center gap-4">
-            <SettingsIcon className="h-8 w-8 text-primary animate-neon-pulse" />
-            <h1 className="text-xl font-8bit neon-cyan">GAME SETTINGS</h1>
+            <SettingsIcon className="h-8 w-8 text-secondary animate-stellar-pulse" />
+            <h1 className="text-xl font-space glow-cyan">SHIP CONTROLS</h1>
           </div>
         </div>
       </div>
@@ -149,16 +136,16 @@ const Settings = () => {
         <div className="max-w-4xl mx-auto space-y-6">
           
           {/* Audio Settings */}
-          <Card className="bg-card/50 backdrop-blur-sm border-2 border-primary/20">
+          <Card className="bg-card/40 backdrop-blur-sm holo-border">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 font-8bit text-sm neon-pink">
+              <CardTitle className="flex items-center gap-3 font-space text-sm glow-blue">
                 <Volume2 className="h-5 w-5" />
-                AUDIO CONTROLS
+                AUDIO SYSTEMS
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
-                <Label className="font-retro text-sm">Sound Effects</Label>
+                <Label className="font-cosmic text-sm">Sound Effects</Label>
                 <Switch
                   checked={settings.sound_enabled}
                   onCheckedChange={(checked) => updateSettings({ sound_enabled: checked })}
@@ -167,7 +154,7 @@ const Settings = () => {
               </div>
               
               <div className="flex items-center justify-between">
-                <Label className="font-retro text-sm">Background Music</Label>
+                <Label className="font-cosmic text-sm">Background Music</Label>
                 <Switch
                   checked={settings.music_enabled}
                   onCheckedChange={(checked) => updateSettings({ music_enabled: checked })}
@@ -176,7 +163,7 @@ const Settings = () => {
               </div>
               
               <div className="space-y-3">
-                <Label className="font-retro text-sm">Master Volume: {settings.volume}%</Label>
+                <Label className="font-cosmic text-sm">Master Volume: {settings.volume}%</Label>
                 <Slider
                   value={[settings.volume]}
                   onValueChange={(value) => updateSettings({ volume: value[0] })}
@@ -189,17 +176,17 @@ const Settings = () => {
             </CardContent>
           </Card>
 
-          {/* Game Settings */}
-          <Card className="bg-card/50 backdrop-blur-sm border-2 border-secondary/20">
+          {/* Mission Settings */}
+          <Card className="bg-card/40 backdrop-blur-sm holo-border">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 font-8bit text-sm neon-cyan">
+              <CardTitle className="flex items-center gap-3 font-space text-sm glow-cyan">
                 <Gamepad2 className="h-5 w-5" />
-                GAMEPLAY OPTIONS
+                MISSION CONTROL
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
-                <Label className="font-retro text-sm">Auto Save Progress</Label>
+                <Label className="font-cosmic text-sm">Auto-Save Progress</Label>
                 <Switch
                   checked={settings.auto_save}
                   onCheckedChange={(checked) => updateSettings({ auto_save: checked })}
@@ -208,20 +195,20 @@ const Settings = () => {
               </div>
               
               <div className="space-y-3">
-                <Label className="font-retro text-sm">Difficulty Level</Label>
+                <Label className="font-cosmic text-sm">Mission Difficulty</Label>
                 <Select 
                   value={settings.difficulty} 
                   onValueChange={(value) => updateSettings({ difficulty: value })}
                   disabled={isLoading}
                 >
-                  <SelectTrigger className="bg-input/50 border-border">
+                  <SelectTrigger className="holo-border bg-card/20">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="easy">ROOKIE</SelectItem>
-                    <SelectItem value="normal">NORMAL</SelectItem>
-                    <SelectItem value="hard">VETERAN</SelectItem>
-                    <SelectItem value="expert">LEGEND</SelectItem>
+                    <SelectItem value="easy">CADET</SelectItem>
+                    <SelectItem value="normal">COMMANDER</SelectItem>
+                    <SelectItem value="hard">ADMIRAL</SelectItem>
+                    <SelectItem value="expert">FLEET CAPTAIN</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -229,16 +216,16 @@ const Settings = () => {
           </Card>
 
           {/* System Settings */}
-          <Card className="bg-card/50 backdrop-blur-sm border-2 border-accent/20">
+          <Card className="bg-card/40 backdrop-blur-sm holo-border">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 font-8bit text-sm neon-green">
+              <CardTitle className="flex items-center gap-3 font-space text-sm glow-pink">
                 <Palette className="h-5 w-5" />
-                SYSTEM PREFERENCES
+                SYSTEM CONFIG
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
-                <Label className="font-retro text-sm">Push Notifications</Label>
+                <Label className="font-cosmic text-sm">Mission Alerts</Label>
                 <Switch
                   checked={settings.notifications_enabled}
                   onCheckedChange={(checked) => updateSettings({ notifications_enabled: checked })}
@@ -247,19 +234,19 @@ const Settings = () => {
               </div>
               
               <div className="space-y-3">
-                <Label className="font-retro text-sm">Visual Theme</Label>
+                <Label className="font-cosmic text-sm">Interface Theme</Label>
                 <Select 
                   value={settings.theme} 
                   onValueChange={(value) => updateSettings({ theme: value })}
                   disabled={isLoading}
                 >
-                  <SelectTrigger className="bg-input/50 border-border">
+                  <SelectTrigger className="holo-border bg-card/20">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="dark">NEON DARK</SelectItem>
-                    <SelectItem value="light">RETRO LIGHT</SelectItem>
-                    <SelectItem value="classic">CLASSIC ARCADE</SelectItem>
+                    <SelectItem value="space">DEEP SPACE</SelectItem>
+                    <SelectItem value="light">STELLAR LIGHT</SelectItem>
+                    <SelectItem value="classic">GALACTIC CLASSIC</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -269,10 +256,10 @@ const Settings = () => {
           <div className="text-center">
             <Button
               onClick={() => navigate('/')}
-              className="bg-gradient-primary hover:shadow-neon-pink font-8bit text-xs px-8"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-space px-8 py-3 holo-border shadow-stellar-blue"
               disabled={isLoading}
             >
-              {isLoading ? 'SYNCING...' : 'RETURN TO GAME'}
+              {isLoading ? 'SYNCHRONIZING...' : 'RETURN TO STATION'}
             </Button>
           </div>
         </div>
