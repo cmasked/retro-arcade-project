@@ -26,8 +26,7 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))',
-					glow: 'hsl(var(--primary-glow))'
+					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -64,23 +63,6 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
-			backgroundImage: {
-				'gradient-nebula': 'var(--gradient-nebula)',
-				'gradient-galaxy': 'var(--gradient-galaxy)',
-				'gradient-stellar': 'var(--gradient-stellar)',
-				'gradient-void': 'var(--gradient-void)'
-			},
-			boxShadow: {
-				'stellar-blue': 'var(--shadow-stellar-blue)',
-				'cosmic-cyan': 'var(--shadow-cosmic-cyan)',
-				'nebula-pink': 'var(--shadow-nebula-pink)',
-				'void': 'var(--shadow-void)'
-			},
-			fontFamily: {
-				'space': ['Audiowide', 'cursive'],
-				'futuristic': ['Michroma', 'monospace'],
-				'cosmic': ['Exo 2', 'sans-serif']
-			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
@@ -88,45 +70,25 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: { height: '0' },
-					to: { height: 'var(--radix-accordion-content-height)' }
-				},
-				'accordion-up': {
-					from: { height: 'var(--radix-accordion-content-height)' },
-					to: { height: '0' }
-				},
-				'stellar-pulse': {
-					'0%, 100%': { 
-						boxShadow: 'var(--shadow-stellar-blue)',
-						transform: 'scale(1)'
+					from: {
+						height: '0'
 					},
-					'50%': { 
-						boxShadow: 'var(--shadow-stellar-blue), var(--shadow-cosmic-cyan)',
-						transform: 'scale(1.02)'
+					to: {
+						height: 'var(--radix-accordion-content-height)'
 					}
 				},
-				'cosmic-drift': {
-					'0%': { transform: 'translateY(0px) rotate(0deg)' },
-					'33%': { transform: 'translateY(-10px) rotate(120deg)' },
-					'66%': { transform: 'translateY(5px) rotate(240deg)' },
-					'100%': { transform: 'translateY(0px) rotate(360deg)' }
-				},
-				'orbit': {
-					'0%': { transform: 'rotate(0deg) translateX(50px) rotate(0deg)' },
-					'100%': { transform: 'rotate(360deg) translateX(50px) rotate(-360deg)' }
-				},
-				'shimmer': {
-					'0%': { backgroundPosition: '-200% 0' },
-					'100%': { backgroundPosition: '200% 0' }
+				'accordion-up': {
+					from: {
+						height: 'var(--radix-accordion-content-height)'
+					},
+					to: {
+						height: '0'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				'stellar-pulse': 'stellar-pulse 3s ease-in-out infinite',
-				'cosmic-drift': 'cosmic-drift 8s ease-in-out infinite',
-				'orbit': 'orbit 15s linear infinite',
-				'shimmer': 'shimmer 2s ease-in-out infinite'
+				'accordion-up': 'accordion-up 0.2s ease-out'
 			}
 		}
 	},

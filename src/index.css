@@ -1,181 +1,105 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Michroma:wght@400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Space theme - Deep space with cosmic colors and stellar effects */
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
 
 @layer base {
   :root {
-    /* Space Dark Theme */
-    --background: 230 25% 6%;
-    --foreground: 220 20% 95%;
-    --card: 230 25% 8%;
-    --card-foreground: 220 20% 95%;
-    --popover: 230 25% 8%;
-    --popover-foreground: 220 20% 95%;
-    --primary: 260 85% 70%;
-    --primary-foreground: 230 25% 6%;
-    --primary-glow: 260 85% 85%;
-    --secondary: 190 85% 65%;
-    --secondary-foreground: 230 25% 6%;
-    --muted: 230 25% 15%;
-    --muted-foreground: 220 20% 65%;
-    --accent: 310 75% 70%;
-    --accent-foreground: 230 25% 6%;
-    --destructive: 5 85% 60%;
-    --destructive-foreground: 220 20% 95%;
-    --border: 230 25% 18%;
-    --input: 230 25% 15%;
-    --ring: 260 85% 70%;
-    --radius: 0.75rem;
-    
-    /* Cosmic gradients */
-    --gradient-nebula: linear-gradient(135deg, hsl(260 85% 35%) 0%, hsl(310 75% 45%) 25%, hsl(190 85% 40%) 75%, hsl(260 85% 35%) 100%);
-    --gradient-galaxy: radial-gradient(ellipse at 30% 20%, hsl(260 85% 25%) 0%, hsl(230 25% 8%) 40%, hsl(310 75% 15%) 70%, hsl(230 25% 6%) 100%);
-    --gradient-stellar: linear-gradient(45deg, hsl(190 85% 65%) 0%, hsl(260 85% 70%) 50%, hsl(310 75% 70%) 100%);
-    --gradient-void: linear-gradient(180deg, hsl(230 25% 6%) 0%, hsl(230 25% 4%) 50%, hsl(230 25% 8%) 100%);
-    
-    /* Stellar glows and effects */
-    --shadow-stellar-blue: 0 0 25px hsl(260 85% 70% / 0.6), 0 0 50px hsl(260 85% 70% / 0.4), 0 0 75px hsl(260 85% 70% / 0.2);
-    --shadow-cosmic-cyan: 0 0 25px hsl(190 85% 65% / 0.6), 0 0 50px hsl(190 85% 65% / 0.4);
-    --shadow-nebula-pink: 0 0 25px hsl(310 75% 70% / 0.6), 0 0 50px hsl(310 75% 70% / 0.4);
-    --shadow-void: 0 8px 32px hsl(230 25% 4% / 0.8);
-    
-    /* Sidebar colors */
-    --sidebar-background: 230 25% 8%;
-    --sidebar-foreground: 220 20% 95%;
-    --sidebar-primary: 260 85% 70%;
-    --sidebar-primary-foreground: 230 25% 6%;
-    --sidebar-accent: 310 75% 70%;
-    --sidebar-accent-foreground: 230 25% 6%;
-    --sidebar-border: 230 25% 18%;
-    --sidebar-ring: 260 85% 70%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  /* Light theme overrides - Space day mode */
-  .light {
-    --background: 220 25% 98%;
-    --foreground: 230 25% 15%;
-    --card: 220 25% 96%;
-    --card-foreground: 230 25% 15%;
-    --popover: 220 25% 98%;
-    --popover-foreground: 230 25% 15%;
-    --primary: 260 85% 50%;
-    --primary-foreground: 220 25% 98%;
-    --secondary: 190 85% 45%;
-    --secondary-foreground: 220 25% 98%;
-    --muted: 220 25% 90%;
-    --muted-foreground: 230 25% 45%;
-    --accent: 310 75% 50%;
-    --accent-foreground: 220 25% 98%;
-    --destructive: 5 85% 55%;
-    --destructive-foreground: 220 25% 98%;
-    --border: 220 25% 85%;
-    --input: 220 25% 90%;
-    --ring: 260 85% 50%;
-    
-    --gradient-nebula: linear-gradient(135deg, hsl(260 85% 60%) 0%, hsl(310 75% 65%) 25%, hsl(190 85% 60%) 75%, hsl(260 85% 60%) 100%);
-    --gradient-galaxy: radial-gradient(ellipse at 30% 20%, hsl(260 85% 85%) 0%, hsl(220 25% 96%) 40%, hsl(310 75% 85%) 70%, hsl(220 25% 98%) 100%);
-    --gradient-stellar: linear-gradient(45deg, hsl(190 85% 45%) 0%, hsl(260 85% 50%) 50%, hsl(310 75% 50%) 100%);
-    --gradient-void: linear-gradient(180deg, hsl(220 25% 98%) 0%, hsl(220 25% 94%) 50%, hsl(220 25% 96%) 100%);
-    
-    --shadow-stellar-blue: 0 0 20px hsl(260 85% 50% / 0.4), 0 0 40px hsl(260 85% 50% / 0.2);
-    --shadow-cosmic-cyan: 0 0 20px hsl(190 85% 45% / 0.4);
-    --shadow-nebula-pink: 0 0 20px hsl(310 75% 50% / 0.4);
-    --shadow-void: 0 4px 20px hsl(230 25% 30% / 0.15);
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
+    @apply border-border;
   }
 
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: 'Exo 2', sans-serif;
-  }
-
-  /* Holographic border effect */
-  .holo-border {
-    border: 2px solid transparent;
-    background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
-                var(--gradient-stellar) border-box;
-    border-radius: var(--radius);
-  }
-
-  /* Stellar pulse animation */
-  @keyframes stellar-pulse {
-    0%, 100% { 
-      box-shadow: var(--shadow-stellar-blue);
-      transform: scale(1);
-    }
-    50% { 
-      box-shadow: var(--shadow-stellar-blue), var(--shadow-cosmic-cyan);
-      transform: scale(1.02);
-    }
-  }
-
-  .stellar-pulse {
-    animation: stellar-pulse 3s ease-in-out infinite;
-  }
-
-  /* Cosmic drift animation */
-  @keyframes cosmic-drift {
-    0% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-10px) rotate(120deg); }
-    66% { transform: translateY(5px) rotate(240deg); }
-    100% { transform: translateY(0px) rotate(360deg); }
-  }
-
-  .cosmic-drift {
-    animation: cosmic-drift 8s ease-in-out infinite;
-  }
-
-  /* Nebula effect overlay */
-  .nebula-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--gradient-nebula);
-    opacity: 0.1;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* Font classes */
-  .font-space {
-    font-family: 'Audiowide', cursive;
-  }
-
-  .font-futuristic {
-    font-family: 'Michroma', monospace;
-  }
-
-  .font-cosmic {
-    font-family: 'Exo 2', sans-serif;
-  }
-
-  /* Stellar glow effects */
-  .glow-blue {
-    color: hsl(var(--primary));
-    text-shadow: 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary));
-  }
-
-  .glow-cyan {
-    color: hsl(var(--secondary));
-    text-shadow: 0 0 10px hsl(var(--secondary)), 0 0 20px hsl(var(--secondary)), 0 0 30px hsl(var(--secondary));
-  }
-
-  .glow-pink {
-    color: hsl(var(--accent));
-    text-shadow: 0 0 10px hsl(var(--accent)), 0 0 20px hsl(var(--accent)), 0 0 30px hsl(var(--accent));
+    @apply bg-background text-foreground;
   }
 }
